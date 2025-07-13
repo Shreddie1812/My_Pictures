@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAO Dangerous Goods Loading Guide - Cargojet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#000000]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-6xl font-black text-[#FFFFFF] uppercase">CAO Loading</h1>
+            <p class="text-xl md:text-2xl font-bold gradient-text">A Visual Guide for Safe & Compliant Operations</p>
+            <p class="text-md text-[#FFFFFF] max-w-3xl mx-auto mt-2">An essential guide for Load Planners based on the Cargojet Dangerous Goods Operations Manual. Safety is our priority.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-1 md:col-span-2 bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center justify-center">
+                <h2 class="text-2xl font-bold text-[#3E2C41] mb-4 text-center">What are "Cargo Aircraft Only" Goods?</h2>
+                <div class="w-48 h-44 border-4 border-dashed border-[#FF7F3E] bg-[#FF7F3E]/10 rounded-lg flex flex-col items-center justify-center p-4">
+                    <p class="text-center font-bold text-5xl text-[#FF7F3E]">CAO</p>
+                    <p class="text-[#3E2C41] text-center font-semibold mt-2">Stands for "Cargo Aircraft Only"</p>
+                </div>
+                <p class="text-center text-[#3E2C41] mt-4">These are substances forbidden on passenger aircraft due to their high-risk nature or quantity, and require special handling and loading procedures on cargo aircraft.</p>
+            </div>
+
+            <div class="lg:col-span-2 md:col-span-2 bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#3E2C41] mb-4 text-center">The Golden Rule: Approved Loading Locations</h2>
+                <p class="text-center text-[#3E2C41] mb-6">CAO Dangerous Goods are only permitted in approved locations. Load Planners must ensure every CAO shipment is assigned to a location with the required fire safety standards.</p>
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 bg-[#A2D2FF]/30 rounded-lg w-full md:w-1/3">
+                        <p class="text-5xl">1</p>
+                        <h3 class="font-bold text-[#3E2C41] mt-2">Class C Cargo Compartment</h3>
+                        <p class="text-sm text-[#3E2C41]">The primary location, with built-in fire detection and suppression systems.</p>
+                    </div>
+                    <div class="text-2xl font-bold text-[#3E2C41]">&#10140;</div>
+                    <div class="text-center p-4 bg-[#A2D2FF]/30 rounded-lg w-full md:w-1/3">
+                        <p class="text-5xl">2</p>
+                        <h3 class="font-bold text-[#3E2C41] mt-2">Class C Equivalent ULD</h3>
+                        <p class="text-sm text-[#3E2C41]">A Unit Load Device certified to provide the same level of fire safety.</p>
+                    </div>
+                     <div class="text-2xl font-bold text-[#3E2C41]">&#10140;</div>
+                    <div class="text-center p-4 bg-[#A2D2FF]/30 rounded-lg w-full md:w-1/3">
+                        <p class="text-5xl">3</p>
+                        <h3 class="font-bold text-[#3E2C41] mt-2">Aircraft Specific Bins</h3>
+                        <p class="text-sm text-[#3E2C41]">Designated bins on certain aircraft that act as Class C equivalents.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 md:col-span-2 bg-white rounded-2xl shadow-xl p-6">
+                 <h2 class="text-2xl font-bold text-[#3E2C41] mb-4 text-center">Cargojet Fleet Capabilities for CAO</h2>
+                 <p class="text-center text-[#3E2C41] mb-6">Load Planners must consult this table to verify the correct loading location based on the specific aircraft type and tail code.</p>
+                 <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-[#3E2C41] text-white">
+                                <th class="p-3 text-center font-bold uppercase">Aircraft Type</th>
+                                <th class="p-3 font-bold uppercase">Aircraft Registrations</th>
+                                <th class="p-3 font-bold uppercase">Class C Main Deck</th>
+                                <th class="p-3 font-bold uppercase text-center">Class C Lower Deck</th>
+                                <th class="p-3 font-bold uppercase text-center">Class C DG Bin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <td class="p-3 text-center font-bold">757</td>
+                                <td class="p-3 text-center">ALL</td>
+                                <td class="p-3 text-center text-red-600 font-bold">&#10006; No</td>
+                                <td class="p-3 text-center text-green-600 font-bold">&#10004; Yes</td>
+                                <td class="p-3 text-center text-red-600 font-bold">&#10006; No</td>
+                            </tr>
+                             <tr class="bg-white border-b border-gray-200">
+                                <td class="p-3 text-center font-bold">767</td>
+                                <td class="p-3 text-center">ALL except UAJ, YAJ, GSJ</td>
+                                <td class="p-3 text-center text-red-600 font-bold">&#10006; No</td>
+                                <td class="p-3 text-center text-green-600 font-bold">&#10004; Yes</td>
+                                <td class="p-3 text-center text-red-600 font-bold">&#10006; No</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="p-3 text-center font-bold">767</td>
+                                <td class="p-3 text-center">UAJ, YAJ, GSJ</td>
+                                <td class="p-3 text-center text-red-600 font-bold">&#10006; No</td>
+                                <td class="p-3 text-center text-red-600 font-bold">&#10006; No</td>
+                                <td class="p-3 text-center text-green-600 font-bold">&#10004; Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white rounded-2xl shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#3E2C41] mb-4 text-center">Exemptions to the Class C Rule: Visual Examples</h2>
+                <p class="text-center text-[#3E2C41] mb-6">Certain CAO goods are exempt from requiring a Class C compartment due to their primary hazard type. They must still be loaded on a Cargo Aircraft, but offer more loading flexibility. Below are visual examples of these exempted dangerous goods.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x100/3E2C41/BDE0FE?text=UN3529%0AENGINES" alt="UN3529 Engines/Machinery" class="rounded-lg shadow-md mb-2">
+                        <p class="text-sm font-semibold text-[#3E2C41]">UN3529 (Engines/Machinery)</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://github.com/Shreddie1812/My_Pictures/blob/main/DSC_7026_01022023_CFKAJ2.jpg?raw=true" alt="Flammable Liquid Class 3 PG III" class="rounded-lg shadow-md mb-2">
+                        <p class="text-sm font-semibold text-[#3E2C41]">Flammable Liquid (Class 3, PG III)</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x100/F94C66/BDE0FE?text=TOXIC%0ASUBSTANCE%0A(Div+6.1)" alt="Toxic Substance Division 6.1" class="rounded-lg shadow-md mb-2">
+                        <p class="text-sm font-semibold text-[#3E2C41]">Toxic Substance (Div 6.1)</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x100/A2D2FF/3E2C41?text=INFECTIOUS%0ASUBSTANCE%0A(Div+6.2)" alt="Infectious Substance Division 6.2" class="rounded-lg shadow-md mb-2">
+                        <p class="text-sm font-semibold text-[#3E2C41]">Infectious Substance (Div 6.2)</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x100/3E2C41/FF7F3E?text=RADIOACTIVE%0A(Class+7)" alt="Radioactive Materials Class 7" class="rounded-lg shadow-md mb-2">
+                        <p class="text-sm font-semibold text-[#3E2C41]">Radioactive Materials (Class 7)</p>
+                    </div>
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x100/BDE0FE/3E2C41?text=MISC.%0ADANGEROUS%0AGOODS%0A(Class+9)" alt="Miscellaneous Dangerous Goods Class 9" class="rounded-lg shadow-md mb-2">
+                        <p class="text-sm font-semibold text-[#3E2C41]">Miscellaneous Dangerous Goods (Class 9)</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (str, maxLen) => {
+                if (str.length <= maxLen) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLen) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+            
+            const tooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: '#3E2C41',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            };
+        });
+    </script>
+</body>
+</html>
