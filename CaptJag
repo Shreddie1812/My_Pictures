@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Career of Captain Jag Sarkaria | Interactive Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm & Authoritative -->
+    <!-- Application Structure Plan: The application is structured as a narrative-driven, single-page dashboard. It starts with high-impact, aggregate numbers (KPIs) to immediately establish the scale of the pilot's career. It then flows into more detailed, comparative visualizations (Experience Breakdown) allowing users to understand the composition of his flight hours. This is followed by a clear, organized list of his technical qualifications (Aircraft Expertise) and a chronological view of his career progression (Career Timeline). This thematic, top-down structure was chosen over a direct resume format to guide the user from a broad overview to specific details, enhancing comprehension and creating a more engaging user journey. -->
+    <!-- Visualization & Content Choices: 
+        - Total/PIC Hours -> Goal: Inform -> Viz: Dynamic Stats (Big Numbers) -> Interaction: None -> Justification: Provides immediate, high-impact understanding of career scope. Method: Styled HTML. (CONFIRM: NO SVG).
+        - PIC vs Total Hours -> Goal: Compare -> Viz: Donut Chart -> Interaction: Hover Tooltip -> Justification: Best for showing a clear part-to-whole relationship of command time. Library: Chart.js (Canvas). (CONFIRM: NO SVG).
+        - PIC Hours by Type -> Goal: Compare -> Viz: Bar Chart -> Interaction: Hover Tooltip -> Justification: Ideal for comparing distinct categories of flight experience. Library: Chart.js (Canvas). (CONFIRM: NO SVG).
+        - Career History -> Goal: Change -> Viz: Timeline -> Interaction: Scroll -> Justification: Visually represents career progression chronologically, which is more intuitive than a table. Method: Structured HTML/CSS. (CONFIRM: NO SVG/Mermaid).
+        - Aircraft Flown -> Goal: Organize -> Viz: Styled Grid -> Interaction: None -> Justification: A clean, scannable format to display a wide range of qualifications. Method: Styled HTML with Unicode. (CONFIRM: NO SVG).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* Light Gray Background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .nav-link.active {
+            color: #2563EB; /* Blue-600 */
+            border-bottom-color: #2563EB;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #D1D5DB; /* Gray-300 */
+            border-radius: 2px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 4px;
+            height: 1.25rem;
+            width: 1.25rem;
+            background-color: #F8F9FA;
+            border: 4px solid #3B82F6; /* Blue-500 */
+            border-radius: 9999px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-900">Capt. Jag Sarkaria</h1>
+            <div class="hidden md:flex space-x-8" id="nav-menu">
+                <a href="#overview" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent pb-1">Overview</a>
+                <a href="#experience" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent pb-1">Experience</a>
+                <a href="#fleet" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent pb-1">Fleet</a>
+                <a href="#timeline" class="nav-link text-gray-600 hover:text-blue-600 border-b-2 border-transparent pb-1">Timeline</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="overview" class="text-center py-12 md:py-16">
+            <h2 class="text-4xl md:text-5xl font-black text-blue-600 mb-3">A Legacy of Command</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                This interactive application explores the distinguished multi-decade career of Captain Jag Sarkaria. Below is a summary of his extensive flight experience, diverse aircraft qualifications, and professional journey through the skies.
+            </p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                <p class="text-sm font-medium text-gray-500">Total Flight Hours</p>
+                <p class="text-4xl font-bold text-gray-900 mt-1">16,030</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                <p class="text-sm font-medium text-gray-500">Pilot in Command</p>
+                <p class="text-4xl font-bold text-gray-900 mt-1">14,580 hrs</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-500">
+                <p class="text-sm font-medium text-gray-500">Multi-Engine PIC</p>
+                <p class="text-4xl font-bold text-gray-900 mt-1">12,160 hrs</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
+                <p class="text-sm font-medium text-gray-500">Licenses Held</p>
+                <p class="text-4xl font-bold text-gray-900 mt-1">ATPL & CHPL</p>
+            </div>
+        </section>
+
+        <section id="experience" class="py-12 bg-gray-50 rounded-lg">
+            <div class="text-center mb-10 px-4">
+                <h2 class="text-3xl font-bold">Experience Breakdown</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mt-2">These visualizations illustrate the composition of Captain Sarkaria's flight hours, highlighting his extensive time in command across various aircraft engine categories.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-center mb-4">Command vs. Total Flight Time</h3>
+                    <div class="chart-container">
+                        <canvas id="picHoursChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-center mb-4">PIC Hours by Engine Type</h3>
+                    <div class="chart-container">
+                        <canvas id="engineHoursChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="fleet" class="py-16">
+            <div class="text-center mb-10 px-4">
+                <h2 class="text-3xl font-bold">Fleet Expertise</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mt-2">Captain Sarkaria is type-rated and experienced in a wide array of fixed-wing and rotary aircraft, from heavy jets to commercial helicopters.</p>
+            </div>
+            <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center">
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">DC-10</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Boeing 737</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Boeing 727</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Learjet 31/35</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Premier I</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Fokker F27</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Dash 8</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">Metroliner</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">✈️</span><span class="font-medium align-middle">King Air 90/200</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">🚁</span><span class="font-medium align-middle">Westland 30</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">🚁</span><span class="font-medium align-middle">Bell 47</span></div>
+                <div class="bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow"><span class="text-3xl mr-2">🚁</span><span class="font-medium align-middle">Robinson R22</span></div>
+            </div>
+        </section>
+
+        <section id="timeline" class="py-12">
+            <div class="text-center mb-12 px-4">
+                <h2 class="text-3xl font-bold">Career Timeline</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mt-2">Follow a chronological path of key roles and responsibilities that defined Captain Sarkaria's professional journey.</p>
+            </div>
+            <div class="relative max-w-3xl mx-auto pl-8">
+                <div class="timeline">
+                    <div class="timeline-item relative pl-8 pb-10">
+                        <p class="text-sm font-semibold text-blue-600">Mar 2016 - Present</p>
+                        <h4 class="font-bold text-xl mt-1">Captain, Boeing 737-400/500</h4>
+                        <p class="text-gray-600">Air North | Whitehorse, YT</p>
+                    </div>
+                    <div class="timeline-item relative pl-8 pb-10">
+                        <p class="text-sm font-semibold text-blue-600">Aug 2018 - Nov 2017</p>
+                        <h4 class="font-bold text-xl mt-1">Captain, DC-10</h4>
+                        <p class="text-gray-600">KF Aerospace | Kelowna, BC</p>
+                    </div>
+                    <div class="timeline-item relative pl-8 pb-10">
+                        <p class="text-sm font-semibold text-blue-600">May 2015 - Sep 2007</p>
+                        <h4 class="font-bold text-xl mt-1">Captain, B727 & B737</h4>
+                        <p class="text-gray-600">Flair Airline | Kelowna, BC</p>
+                    </div>
+                    <div class="timeline-item relative pl-8 pb-10">
+                        <p class="text-sm font-semibold text-blue-600">Sep 2007 - Mar 2005</p>
+                        <h4 class="font-bold text-xl mt-1">Captain, Learjet 31/35 (Medevac)</h4>
+                        <p class="text-gray-600">CGAA Helijet | Vancouver, BC</p>
+                    </div>
+                    <div class="timeline-item relative pl-8 pb-10">
+                        <p class="text-sm font-semibold text-blue-600">Nov 2004 - Oct 1998</p>
+                        <h4 class="font-bold text-xl mt-1">Captain, Learjet 31 & Fokker F-27</h4>
+                        <p class="text-gray-600">Western Express Airline | Vancouver, BC</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto py-6 px-6 text-center">
+            <p>&copy; 2025 | A tribute to the career of Captain Jag Sarkaria.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const picHoursData = {
+                labels: ['Pilot in Command', 'Other Flight Time'],
+                datasets: [{
+                    data: [14580, 16030 - 14580],
+                    backgroundColor: ['#2563EB', '#93C5FD'],
+                    borderColor: '#F8F9FA',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            };
+
+            const picHoursConfig = {
+                type: 'doughnut',
+                data: picHoursData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            };
+
+            const engineHoursData = {
+                labels: ['Multi-Engine', 'Turbojet', 'Turboprop'],
+                datasets: [{
+                    label: 'PIC Hours',
+                    data: [12160, 6200, 5650],
+                    backgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
+                    borderRadius: 4
+                }]
+            };
+
+            const engineHoursConfig = {
+                type: 'bar',
+                data: engineHoursData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { x: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            };
+            
+            const picCtx = document.getElementById('picHoursChart')?.getContext('2d');
+            if(picCtx) new Chart(picCtx, picHoursConfig);
+
+            const engineCtx = document.getElementById('engineHoursChart')?.getContext('2d');
+            if(engineCtx) new Chart(engineCtx, engineHoursConfig);
+
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('#nav-menu a');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
